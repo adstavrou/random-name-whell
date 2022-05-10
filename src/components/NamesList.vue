@@ -1,16 +1,16 @@
 <template>
-  <ol>
+  <ol id="listOfNames">
     <li v-for="name in state.names">{{name}}</li>
 
   </ol>
   <div>
     <label for="name">Enter a name</label>
     <input id="name" type="text" v-model="state.nameToAdd">
-    <button type="button" @click="addName(state.nameToAdd)">Add</button>
+    <button id="addNameBtn" type="button" @click="addName(state.nameToAdd)">Add</button>
   </div>
   <div>
-    <button type="button" @click="runTheWheel">Run The Wheel</button>
-    <h2>{{state.winner}}</h2>
+    <button id="runTheWheel" type="button" @click="runTheWheel">Run The Wheel</button>
+    <h2 id="winner">{{state.winner}}</h2>
   </div>
 
 </template>

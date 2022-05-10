@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import NameList from '../src/components/NamesList.vue'
+import NameList from '../../src/components/NamesList.vue'
 import { it, describe, expect, test } from 'vitest';
 
 

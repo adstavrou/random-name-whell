@@ -1,0 +1,17 @@
+{
+  "baseUrl": "http://localhost:3000/",
+  "testFiles":"**/*.spec.ct.{js,ts,jsx,tsx}",
+  "downloadsFolder":"test/cypress/downloads",
+  "fixturesFolder": "test/cypress/fixtures",
+  "integrationFolder": "test/cypress/integration",
+  "pluginsFile": "test/cypress/plugins/index.js",
+  "screenshotsFolder": "test/cypress/screenshots",
+  "supportFile": "test/cypress/support/index.js",
+  "videosFolder": "cypress/videos",
+  "viewportWidth": 1280,
+  "viewportHeight": 720,
+  "component": {
+    "testFiles": "**/*.spec.ct.{js,ts,jsx,tsx}",
+    "componentFolder": "src"
+  }
+}

@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import HelloWorld from '../src/components/HelloWorld.vue'
+import HelloWorld from '../../src/components/HelloWorld.vue'
 import { it, describe, expect, test } from 'vitest';
 
 
