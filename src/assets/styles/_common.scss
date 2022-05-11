@@ -1,0 +1,45 @@
+body {
+  margin: 0;
+  font-family: $f-serif;
+  font-size: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: $c-font-basic;
+}
+
+h1, .h1 {
+  font-size: 2em;
+  font-weight: 800;
+}
+
+h2, .h2 {
+  font-size: 1.4em;
+  font-weight: 700;
+}
+
+h3, .h3 {
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+h4, .h4 {
+  font-size: 1em;
+  font-weight: 600;
+}
+
+p {
+  font-size: 1em;
+  font-weight: 400;
+}
+
+.main-container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+
+  &__col {
+    display: inline-block;
+    width: 50%;
+    padding: 0 20px;
+  }
+}

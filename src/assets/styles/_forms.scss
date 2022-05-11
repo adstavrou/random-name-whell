@@ -1,0 +1,98 @@
+.form-input {
+
+  &__container {
+    position: relative;
+    margin-bottom: 3em;
+  }
+
+  &__label {
+    display: block;
+    position: absolute;
+    top: 1.52em;
+    left: 1.2em;
+    color: $c-font-label;
+    transition: top .4s ease-in-out;
+  }
+
+  &__decoration-line {
+    position: absolute;
+    height: 2px;
+    width: 380px;
+    background-image: linear-gradient(90deg,$c-font-label 0%, $c-font-label 33%,$c-ping 66% ,$c-orange 100%);
+    background-size: 300% 100%;
+    background-position: 0%;
+    transition: background-position .4s ease-in-out;
+    left:.6em;
+    top:3.6em
+
+  }
+
+  &__text {
+    border: none;
+    font-size: 1.4em;
+    padding: .4em;
+    border-radius: 0;
+    margin: .5em;
+    color: $c-font-inputs;
+    width: 310px;
+
+    &:focus-visible {
+      outline: none;
+    }
+
+    &::placeholder {
+      color: $c-font-reversed;
+    }
+
+    &:not(:placeholder-shown) + label {
+      top: -.7em;
+    }
+
+    &:not(:placeholder-shown) ~ .form-input__decoration-line,
+    &:focus-visible ~ .form-input__decoration-line{
+      background-position: 100%;
+    }
+  }
+
+  &__button--add {
+    font-weight: 230;
+    background: none;
+    border: solid 1px currentColor;
+    border-radius: 50%;
+    line-height: 0;
+    width: 1.3em;
+    height: 1.3em;
+    font-size: 1.5em;
+    color: $c-font-label;
+    cursor: pointer;
+  }
+
+  &__button--run {
+    margin: .5em;
+    border: none;
+    font-size: 1em;
+    padding: .4em 1.2em;
+    line-height: 2;
+    border-radius: 2em;
+    color: $c-font-reversed;
+    font-weight: 700;
+    cursor: pointer;
+    text-transform: uppercase;
+    background-image: linear-gradient(90deg,$c-ping 0%, $c-orange 33%,$c-ping 66% ,$c-orange 100%);
+    background-size: 300% 100%;
+    background-position: 100%;
+    transition: background-position .4s ease-in-out;
+    padding:.5em 4em;
+    text-shadow: 1px 1px $c-shadow-basic;
+    box-shadow: 0px 0px 2px 1px $c-shadow-basic;
+
+    &:hover {
+      background-position: 50%;
+    }
+
+    &:active {
+      background-position: 0%;
+    }
+  }
+
+}
