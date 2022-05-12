@@ -1,14 +1,11 @@
 <template>
   <main class="main-container">
     <section class="main-container__col">
-      <ol id="listOfNames">
-        <li v-for="name in state.names">{{name}}</li>
-
-      </ol>
+      <Wheel :list-of-names="state.names"></Wheel>
     </section>
     <section class="main-container__col">
       <div class="form-input__container">
-        <input id="name" type="text" v-model="state.nameToAdd" class="form-input__text" placeholder="Enter a name">
+        <input id="name" type="text" v-model="state.nameToAdd" class="form-input__text" @keydown.enter="addName(state.nameToAdd)" placeholder="Enter a name">
         <label for="name" class="form-input__label">Enter a name</label>
         <span class="form-input__decoration-line"></span>
         <button id="addNameBtn" class="form-input__button--add" type="button" @click="addName(state.nameToAdd)">+</button>
@@ -24,6 +21,7 @@
 <script setup lang="ts">
 import { test } from "../../utils/helpers";
 import { reactive } from 'vue';
+import Wheel from '../wheel/Wheel.vue'
 
 const state = reactive({
   names : [],
