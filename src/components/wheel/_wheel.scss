@@ -13,7 +13,8 @@
   transform-style: preserve-3d;
   animation-duration: 4s;
   animation-iteration-count: 1;
-  animation-fill-mode: forwards;
+  transform: rotateX(  var(--whell-spin-from-degrees));
+  //animation-fill-mode: forwards;
 
   &--spin {
     animation-name: spin;

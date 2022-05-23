@@ -1,7 +1,7 @@
 <template>
   <main class="main-container">
     <section class="main-container__col">
-      <Wheel :list-of-names="state.names" :spin-the-wheel="state.spinTheWheel" @wheel-anim-stopped=""></Wheel>
+      <Wheel :list-of-names="state.names" :spin-the-wheel="state.spinTheWheel" @wheel-anim-stopped="weHaveAWinner"></Wheel>
     </section>
     <section class="main-container__col">
       <div class="form-input__container">
@@ -30,8 +30,6 @@ const state = reactive({
   spinTheWheel: false,
 });
 
-const $root = document.querySelector(':root');
-
 function addName(arg: string) {
   state.names.push(arg);
   state.nameToAdd = '';
@@ -40,9 +38,11 @@ function addName(arg: string) {
 function runTheWheel() {
   const index = Math.floor(Math.random() * state.names.length)
   state.spinTheWheel = true;
-  $root.style.setProperty('--whell-spin-to-degrees' , `${- (3600 + index * (360 / state.names.length))}deg`);
+}
 
-  state.winner = state.names[index];
+function weHaveAWinner(winner: Number) {
+  state.spinTheWheel = false;
+  state.winner = state.names[winner];
 }
 
 </script>

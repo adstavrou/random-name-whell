@@ -24,7 +24,8 @@ const props = defineProps({
 
 const state = reactive({
   deg : 0,
-  zLength : 0
+  zLength : 0,
+  winner : -1
 });
 
 const emit = defineEmits([
@@ -32,21 +33,20 @@ const emit = defineEmits([
     ]
 );
 
-function animStopped() {
-  emit('wheelAnimStopped');
+const $root = document.querySelector(':root');
+
+function spinSetup() {
+  state.winner = Math.floor(Math.random() * props.listOfNames.length);
+  $root.style.setProperty('--whell-spin-to-degrees' , `${- (3600 + state.winner * (360 / props.listOfNames.length))}deg`);
 }
 
+function spinStopped() {
+  $root.style.setProperty('--whell-spin-from-degrees' , `${- (state.winner * (360 / props.listOfNames.length))}deg`);
+  emit('wheelAnimStopped', state.winner);
+}
 
-onBeforeUpdate(() => {
-  state.deg = 360 / props.listOfNames.length;
-  state.zLength = 6 * props.listOfNames.length;
-
-});
-
-onUpdated(() => {
-
+function waitAnimToStop() {
   const $wheel = document.querySelector('#listOfNames');
-
   Promise.all(
       $wheel.getAnimations().map(
           function(animation) {
@@ -55,10 +55,21 @@ onUpdated(() => {
       )
   ).then(
       function() {
-        animStopped();
+        spinStopped();
       }
   );
+}
 
+
+onBeforeUpdate(() => {
+  state.deg = 360 / props.listOfNames.length;
+  state.zLength = 6 * props.listOfNames.length;
+  props.spinTheWheel && spinSetup();
+
+});
+
+onUpdated(() => {
+  props.spinTheWheel && waitAnimToStop();
 })
 
 </script>
