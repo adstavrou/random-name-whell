@@ -1,7 +1,7 @@
 <template>
   <main class="main-container">
     <section class="main-container__col">
-      <Wheel :list-of-names="state.names"></Wheel>
+      <Wheel :list-of-names="state.names" :spin-the-wheel="state.spinTheWheel" @wheel-anim-stopped=""></Wheel>
     </section>
     <section class="main-container__col">
       <div class="form-input__container">
@@ -26,18 +26,21 @@ import Wheel from '../wheel/Wheel.vue'
 const state = reactive({
   names : [],
   winner : '',
-  nameToAdd: ''
+  nameToAdd: '',
+  spinTheWheel: false,
 });
 
-function addName(arg) {
+const $root = document.querySelector(':root');
+
+function addName(arg: string) {
   state.names.push(arg);
-  test('test', state.names);
   state.nameToAdd = '';
-  test('test2', state.nameToAdd);
 }
 
 function runTheWheel() {
   const index = Math.floor(Math.random() * state.names.length)
+  state.spinTheWheel = true;
+  $root.style.setProperty('--whell-spin-to-degrees' , `${- (3600 + index * (360 / state.names.length))}deg`);
 
   state.winner = state.names[index];
 }
