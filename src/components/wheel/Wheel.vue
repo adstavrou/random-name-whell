@@ -62,8 +62,24 @@ function waitAnimToStop() {
 
 
 onBeforeUpdate(() => {
-  state.deg = 360 / props.listOfNames.length;
-  state.zLength = 6 * props.listOfNames.length;
+  const numOfNames = props.listOfNames.length;
+  if (numOfNames > 0) {
+    state.deg = 360 / numOfNames;
+
+    switch (numOfNames) {
+      case 1 :
+        state.zLength = 0;
+        break;
+      case 2 :
+        state.zLength = 0.1;
+        break;
+      default :
+        //find the INRADIUS of a polygon incircle https://mathworld.wolfram.com/Inradius.html
+        state.zLength = 1/2 * (36 * (1 / (Math.tan(Math.PI / numOfNames))));
+        break;
+    }
+  }
+
   props.spinTheWheel && spinSetup();
 
 });
